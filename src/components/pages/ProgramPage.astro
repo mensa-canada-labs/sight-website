@@ -1,7 +1,7 @@
 ---
 import { CheckCircle, AlertTriangle, ArrowRight, Globe, BookOpen, Heart, Compass } from 'lucide-astro';
 import Layout from '../../layouts/Layout.astro';
-import { getLocalizedPath } from '../../i18n/site';
+import { getAssetPath, getLocalizedPath } from '../../i18n/site';
 import type { Locale } from '../../i18n/site';
 
 interface Props {
@@ -218,7 +218,7 @@ const roleIcons = [Compass, Heart, Globe];
   <!-- Hero with background image -->
   <section
     class="image-hero"
-    style="background: url('/images/hero-program.jpg') center/cover no-repeat, url('/images/hero-program.svg') center/cover no-repeat, linear-gradient(135deg, #102235, #1A3A5C 50%, #7C2A39);"
+    style={`background: url('${getAssetPath('images/hero-program.jpg')}') center/cover no-repeat, url('${getAssetPath('images/hero-program.svg')}') center/cover no-repeat, linear-gradient(135deg, #102235, #1A3A5C 50%, #7C2A39);`}
   >
     <div class="page-container text-center">
       <h1 class="page-hero-title">{copy.heroTitle}</h1>
@@ -272,7 +272,7 @@ const roleIcons = [Compass, Heart, Globe];
               <div class="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-primary to-primary-light"></div>
               <div
                 class="program-role-media"
-                style={`background: url('/images/roles/${role.image}.jpg') center/cover no-repeat, url('/images/roles/${role.image}.svg') center/cover no-repeat, linear-gradient(135deg, rgba(15, 28, 43, 0.94), rgba(27, 58, 92, 0.84));`}
+                style={`background: url('${getAssetPath(`images/roles/${role.image}.jpg`)}') center/cover no-repeat, url('${getAssetPath(`images/roles/${role.image}.svg`)}') center/cover no-repeat, linear-gradient(135deg, rgba(15, 28, 43, 0.94), rgba(27, 58, 92, 0.84));`}
               ></div>
               <div class="px-7 py-8">
                 <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">

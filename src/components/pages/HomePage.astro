@@ -1,7 +1,7 @@
 ---
 import { ArrowRight, Globe, MapPin, Users, Compass, Home as HomeIcon, Mountain, Quote } from 'lucide-astro';
 import Layout from '../../layouts/Layout.astro';
-import { getLocalizedPath } from '../../i18n/site';
+import { getAssetPath, getLocalizedPath } from '../../i18n/site';
 import type { Locale } from '../../i18n/site';
 
 interface Props {
@@ -226,7 +226,7 @@ const destinationGradients: Record<string, string> = {
   <!-- Hero with background image -->
   <section
     class="image-hero"
-    style={`background: url('/images/hero-home.jpg') center/cover no-repeat, url('/images/hero-home.svg') center/cover no-repeat, linear-gradient(135deg, #0D2237, #1A3A5C 50%, #7C2A39);`}
+    style={`background: url('${getAssetPath('images/hero-home.jpg')}') center/cover no-repeat, url('${getAssetPath('images/hero-home.svg')}') center/cover no-repeat, linear-gradient(135deg, #0D2237, #1A3A5C 50%, #7C2A39);`}
   >
     <div class="absolute -left-20 top-20 h-72 w-72 rounded-full bg-primary/20 blur-3xl" style="z-index:1;"></div>
     <div class="absolute -right-16 bottom-16 h-56 w-56 rounded-full bg-accent/12 blur-3xl" style="z-index:1;"></div>
@@ -323,7 +323,7 @@ const destinationGradients: Record<string, string> = {
           return (
             <div
               class="destination-card aspect-[3/2]"
-              style={`background: url('/images/destinations/${slug}.jpg') center/cover no-repeat, url('/images/destinations/${slug}.svg') center/cover no-repeat, ${gradient};`}
+              style={`background: url('${getAssetPath(`images/destinations/${slug}.jpg`)}') center/cover no-repeat, url('${getAssetPath(`images/destinations/${slug}.svg`)}') center/cover no-repeat, ${gradient};`}
             >
               <div class="destination-card-content">
                 <h3 class="font-heading text-2xl font-bold text-white">{dest.city}</h3>

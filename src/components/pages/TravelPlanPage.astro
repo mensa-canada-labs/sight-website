@@ -1,7 +1,7 @@
 ---
 import { Send, MessageCircle, Shield, Clock, Users, ArrowRight } from 'lucide-astro';
 import Layout from '../../layouts/Layout.astro';
-import { getLocalizedPath } from '../../i18n/site';
+import { getAssetPath, getLocalizedPath } from '../../i18n/site';
 import type { Locale } from '../../i18n/site';
 
 interface Props {
@@ -137,7 +137,7 @@ const benefitIcons = { shield: Shield, clock: Clock, users: Users };
   <!-- Hero with background image -->
   <section
     class="image-hero"
-    style="background: url('/images/hero-plan.jpg') center/cover no-repeat, url('/images/hero-plan.svg') center/cover no-repeat, linear-gradient(135deg, #0D2237, #17324D 60%, #7C2A39);"
+    style={`background: url('${getAssetPath('images/hero-plan.jpg')}') center/cover no-repeat, url('${getAssetPath('images/hero-plan.svg')}') center/cover no-repeat, linear-gradient(135deg, #0D2237, #17324D 60%, #7C2A39);`}
   >
     <div class="page-container text-center">
       <h1 class="page-hero-title">{copy.heroTitle}</h1>
