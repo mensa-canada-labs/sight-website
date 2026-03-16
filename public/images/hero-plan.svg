@@ -1,0 +1,28 @@
+﻿<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900' role='img' aria-hidden='true'>
+  <defs>
+    <linearGradient id='sky' x1='0' y1='0' x2='1' y2='1'>
+      <stop offset='0%' stop-color='#11233a' />
+      <stop offset='100%' stop-color='#46688b' />
+    </linearGradient>
+    <linearGradient id='ground' x1='0' y1='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#203450' />
+      <stop offset='100%' stop-color='#2e4765' />
+    </linearGradient>
+  </defs>
+  <rect width='1600' height='900' fill='url(#sky)' />
+  <circle cx='1238' cy='178' r='112' fill='#f8cfb4' fill-opacity='0.92' />
+  <circle cx='1300' cy='146' r='38' fill='rgba(255,255,255,0.2)' />
+  <path d='M0 524C168 485 303 494 444 530C594 568 719 584 865 565C1014 546 1137 497 1275 489C1408 482 1522 511 1600 543V900H0Z' fill='url(#ground)' />
+  <path d='M0 0H1600V900H0Z' fill='rgba(255,255,255,0.02)' />
+  <path d='M0 118C219 91 411 117 591 180C736 231 877 247 1028 223C1175 199 1327 133 1600 142' stroke='rgba(255,255,255,0.08)' stroke-width='12' stroke-linecap='round' fill='none' />
+  <circle cx='412' cy='318' r='76' fill='#f06b76' fill-opacity='0.84' />
+  <path d='M289 625C392 505 517 480 603 560C682 632 788 664 876 620C964 576 1040 463 1163 455C1268 447 1362 503 1446 602' stroke='#edf5fa' stroke-opacity='0.8' stroke-width='18' stroke-linecap='round' stroke-dasharray='16 22' fill='none' />
+  <circle cx='289' cy='625' r='23' fill='#edf5fa' fill-opacity='0.9' />
+  <circle cx='603' cy='560' r='20' fill='#edf5fa' fill-opacity='0.9' />
+  <circle cx='876' cy='620' r='20' fill='#edf5fa' fill-opacity='0.9' />
+  <circle cx='1163' cy='455' r='20' fill='#edf5fa' fill-opacity='0.9' />
+  <circle cx='1446' cy='602' r='24' fill='#f06b76' fill-opacity='0.92' />
+  <path d='M1118 274L1161 188L1204 274Z' fill='rgba(255,255,255,0.85)' />
+  <circle cx='1161' cy='274' r='72' stroke='rgba(255,255,255,0.22)' stroke-width='14' fill='none' />
+  <rect width='1600' height='900' fill='rgba(10, 18, 30, 0.04)' />
+</svg>

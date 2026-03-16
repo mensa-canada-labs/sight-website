@@ -1,0 +1,237 @@
+---
+import { Mail, MapPin, ArrowRight } from 'lucide-astro';
+import Layout from '../../layouts/Layout.astro';
+import ChapterMap from '../ChapterMap.astro';
+import { getLocalizedPath } from '../../i18n/site';
+import type { Locale } from '../../i18n/site';
+
+interface Props {
+  locale: Locale;
+}
+
+type ContactLanguage = 'en' | 'fr' | 'es';
+
+const { locale } = Astro.props;
+
+const copy = locale === 'fr'
+  ? {
+      title: 'Contacts',
+      description: 'Coordonnées des responsables SIGHT au Canada.',
+      heroTitle: 'Contacts SIGHT Canada',
+      heroSubtitle: 'Trouvez le coordinateur ou l\'hôte de votre région pour planifier votre visite au Canada.',
+      mapKicker: 'Carte des chapitres',
+      mapTitle: 'Trouvez un chapitre près de votre destination',
+      mapSubtitle: 'Cliquez sur un marqueur pour voir les coordonnées du chapitre local.',
+      nationalTitle: 'Coordinateur national',
+      regionalTitle: 'Contacts régionaux',
+      languagesTitle: 'Langues',
+      emailLabel: 'Courriel',
+      generalTitle: 'Contact général',
+      generalBody: 'Pour toute question générale sur le programme SIGHT au Canada, contactez-nous à\u00A0:',
+      ctaTitle: 'Prêt à planifier?',
+      ctaBody: 'Envoyez-nous votre itinéraire et nous vous mettrons en contact avec un hôte.',
+      ctaPrimary: 'Planifier votre visite',
+    }
+  : locale === 'es'
+    ? {
+        title: 'Contactos',
+      description: 'Datos de contacto de los responsables SIGHT en Canadá.',
+        heroTitle: 'Contactos SIGHT Canadá',
+        heroSubtitle: 'Encuentre el coordinador o anfitrión de su región para planificar su visita a Canadá.',
+        mapKicker: 'Mapa de capítulos',
+        mapTitle: 'Encuentre un capítulo cerca de su destino',
+        mapSubtitle: 'Haga clic en un marcador para ver los datos del capítulo local.',
+        nationalTitle: 'Coordinador nacional',
+        regionalTitle: 'Contactos regionales',
+      languagesTitle: 'Idiomas',
+        emailLabel: 'Correo electrónico',
+        generalTitle: 'Contacto general',
+        generalBody: 'Para cualquier pregunta general sobre el programa SIGHT en Canadá, contáctenos en:',
+        ctaTitle: '¿Listo para planificar?',
+        ctaBody: 'Envíenos su itinerario y lo conectaremos con un anfitrión.',
+        ctaPrimary: 'Planificar su viaje',
+      }
+    : {
+        title: 'Contacts',
+      description: 'Contact information for SIGHT officers in Canada.',
+        heroTitle: 'SIGHT Canada Contacts',
+        heroSubtitle: 'Find the coordinator or host in your region to plan your visit to Canada.',
+        mapKicker: 'Chapter map',
+        mapTitle: 'Find a chapter near your destination',
+        mapSubtitle: 'Click a marker to view local chapter contact information.',
+        nationalTitle: 'National Coordinator',
+        regionalTitle: 'Regional Contacts',
+      languagesTitle: 'Languages',
+        emailLabel: 'Email',
+        generalTitle: 'General Contact',
+        generalBody: 'For general questions about the SIGHT program in Canada, reach us at:',
+        ctaTitle: 'Ready to plan?',
+        ctaBody: 'Send us your itinerary and we\'ll connect you with a host.',
+        ctaPrimary: 'Plan Your Trip',
+      };
+
+const generalLanguages: ContactLanguage[] = ['en', 'fr'];
+
+const contacts: Array<{
+  image: string;
+  region: string;
+  name: string;
+  email: string;
+  cities: string[];
+  languages: ContactLanguage[];
+}> = [
+  {
+    image: 'bc-yukon',
+    region: locale === 'fr' ? 'Colombie-Britannique et Yukon' : locale === 'es' ? 'Columbia Británica y Yukón' : 'British Columbia & Yukon',
+    name: 'SIGHT BC & Yukon',
+    email: 'sight-bc@mensa.ca',
+    cities: ['Vancouver', 'Victoria', 'Kelowna'],
+    languages: ['en'],
+  },
+  {
+    image: 'prairies',
+    region: locale === 'fr' ? 'Prairies' : locale === 'es' ? 'Praderas' : 'Prairies',
+    name: 'SIGHT Prairies',
+    email: 'sight-prairies@mensa.ca',
+    cities: ['Calgary', 'Edmonton', 'Saskatoon', 'Winnipeg'],
+    languages: ['en'],
+  },
+  {
+    image: 'ontario',
+    region: 'Ontario',
+    name: 'SIGHT Ontario',
+    email: 'sight-ontario@mensa.ca',
+    cities: ['Toronto', 'Ottawa', 'Kitchener', 'London', 'Sudbury', 'Windsor'],
+    languages: ['en', 'fr'],
+  },
+  {
+    image: 'quebec',
+    region: locale === 'fr' ? 'Québec' : locale === 'es' ? 'Quebec' : 'Quebec',
+    name: 'SIGHT Québec',
+    email: 'sight-quebec@mensa.ca',
+    cities: ['Montréal', locale === 'fr' ? 'Québec' : locale === 'es' ? 'Quebec' : 'Quebec City'],
+    languages: ['fr', 'en'],
+  },
+  {
+    image: 'atlantic',
+    region: locale === 'fr' ? 'Canada atlantique' : locale === 'es' ? 'Canadá atlántico' : 'Atlantic Canada',
+    name: 'SIGHT Atlantic',
+    email: 'sight-atlantic@mensa.ca',
+    cities: ['Halifax'],
+    languages: ['en'],
+  },
+];
+---
+
+<Layout title={copy.title} description={copy.description} locale={locale} routeKey="contacts">
+  <!-- Hero with background image -->
+  <section
+    class="image-hero"
+    style="background: url('/images/hero-contacts.jpg') center/cover no-repeat, url('/images/hero-contacts.svg') center/cover no-repeat, linear-gradient(135deg, #17324D, #0D2237 60%, #7C2A39);"
+  >
+    <div class="page-container text-center">
+      <h1 class="page-hero-title">{copy.heroTitle}</h1>
+      <p class="page-hero-subtitle">{copy.heroSubtitle}</p>
+    </div>
+  </section>
+
+  <!-- Interactive Map -->
+  <section class="py-section">
+    <div class="page-container">
+      <div class="mb-10 text-center">
+        <span class="section-kicker"><MapPin class="inline w-3.5 h-3.5 -mt-0.5 mr-1" />{copy.mapKicker}</span>
+        <h2 class="section-title">{copy.mapTitle}</h2>
+        <p class="section-subtitle mx-auto">{copy.mapSubtitle}</p>
+      </div>
+
+      <ChapterMap locale={locale} />
+    </div>
+  </section>
+
+  <!-- General Contact -->
+  <section class="py-section-sm">
+    <div class="page-container">
+      <div class="mx-auto max-w-3xl text-center">
+        <span class="section-kicker">{copy.generalTitle}</span>
+        <p class="mt-4 text-base leading-relaxed text-text-secondary">{copy.generalBody}</p>
+        <a href="mailto:sight@mensa.ca" class="mt-4 inline-flex items-center gap-2 text-lg font-semibold text-primary hover:underline">
+          <Mail class="w-5 h-5" />
+          sight@mensa.ca
+        </a>
+        <div class="mt-4 flex flex-wrap items-center justify-center gap-2.5">
+          <span class="contact-meta-label">{copy.languagesTitle}</span>
+          {generalLanguages.map((language) => (
+            <span class="contact-language-chip">{language.toUpperCase()}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Regional Contacts -->
+  <section class="py-section bg-surface-cool/50">
+    <div class="page-container">
+      <div class="mb-14 text-center">
+        <span class="section-kicker">{copy.regionalTitle}</span>
+      </div>
+
+      <div class="mx-auto grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {contacts.map((contact) => (
+          <div class="surface-panel relative overflow-hidden p-0">
+            <div class="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-primary to-primary-light"></div>
+            <div
+              class="contact-card-media"
+              style={`background: url('/images/regions/${contact.image}.jpg') center/cover no-repeat, url('/images/regions/${contact.image}.svg') center/cover no-repeat, linear-gradient(135deg, rgba(15, 28, 43, 0.94), rgba(27, 58, 92, 0.84));`}
+            ></div>
+            <div class="px-7 py-7">
+              <div class="mb-5 flex items-start justify-between gap-4">
+                <div>
+                  <h3 class="mb-1 font-heading text-xl font-bold uppercase tracking-tight text-secondary">{contact.region}</h3>
+                  <p class="text-sm font-medium text-text-muted">{contact.name}</p>
+                </div>
+                <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-[0.75rem] bg-primary/10 text-primary">
+                  <MapPin class="w-5 h-5" />
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class="contact-meta-label">{copy.languagesTitle}</span>
+                {contact.languages.map((language) => (
+                  <span class="contact-language-chip">{language.toUpperCase()}</span>
+                ))}
+              </div>
+
+              <a href={`mailto:${contact.email}`} class="mt-4 inline-flex items-center gap-2 text-sm text-primary font-semibold hover:underline">
+                <Mail class="w-4 h-4" />
+                {contact.email}
+              </a>
+
+              <div class="mt-5 flex flex-wrap gap-2">
+                {contact.cities.map((city) => (
+                  <span class="rounded-full border border-border bg-surface-cool px-3 py-1.5 text-xs font-medium text-text-secondary">{city}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-section">
+    <div class="page-container">
+      <div class="relative overflow-hidden rounded-[2rem] bg-surface-dark px-8 py-14 text-center text-text-inverse md:px-14">
+        <div class="footer-cta-atmosphere absolute inset-0"></div>
+        <div class="absolute -right-12 top-6 h-40 w-40 rounded-full bg-primary/25 blur-3xl"></div>
+        <div class="relative">
+          <h2 class="font-heading text-4xl font-semibold leading-none text-text-inverse md:text-5xl">{copy.ctaTitle}</h2>
+          <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-text-inverse/72 md:text-lg">{copy.ctaBody}</p>
+          <a href={getLocalizedPath(locale, 'plan')} class="btn-accent mt-8 inline-flex">
+            {copy.ctaPrimary} <ArrowRight class="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

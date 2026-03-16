@@ -1,0 +1,293 @@
+---
+import { Send, MessageCircle, Shield, Clock, Users, ArrowRight } from 'lucide-astro';
+import Layout from '../../layouts/Layout.astro';
+import { getLocalizedPath } from '../../i18n/site';
+import type { Locale } from '../../i18n/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const copy = locale === 'fr'
+  ? {
+      title: 'Planifier votre visite',
+      description: 'Soumettez votre plan de voyage pour être mis en contact avec des hôtes SIGHT au Canada.',
+      heroTitle: 'Planifier votre visite',
+      heroSubtitle: 'Remplissez ce formulaire et nous vous mettrons en contact avec un hôte local.',
+      languageNote: 'Veuillez communiquer en anglais ou en français.',
+      benefitsTitle: 'Pourquoi planifier avec SIGHT?',
+      benefits: [
+        { icon: 'shield', title: 'Réseau de confiance', description: 'Tous les hôtes sont des membres vérifiés de Mensa. Vous êtes entre de bonnes mains.' },
+        { icon: 'clock', title: 'Réponse rapide', description: 'Les coordinateurs vous contactent généralement en 48 heures avec des suggestions d\'hôtes locaux.' },
+        { icon: 'users', title: 'Expérience personnalisée', description: 'Vos intérêts et préférences sont pris en compte pour un jumelage optimal.' },
+      ],
+      nameLabel: 'Nom complet',
+      namePlaceholder: 'Jean Dupont',
+      emailLabel: 'Adresse courriel',
+      emailPlaceholder: 'jean@example.com',
+      memberLabel: 'Numéro de membre Mensa',
+      memberPlaceholder: '123456',
+      countryLabel: 'Pays d\'origine',
+      countryPlaceholder: 'France',
+      arrivalLabel: 'Date d\'arrivée',
+      departureLabel: 'Date de départ',
+      citiesLabel: 'Villes que vous prévoyez visiter',
+      citiesPlaceholder: 'Toronto, Montréal, Vancouver',
+      transportLabel: 'Moyen de transport',
+      transportOptions: ['Voiture', 'Train', 'Avion', 'Autobus', 'Autre'],
+      accommodationLabel: 'Avez-vous besoin d\'hébergement?',
+      accommodationOptions: ['Non, juste un guide local', 'Oui, si possible', 'Facultatif'],
+      interestsLabel: 'Centres d\'intérêt',
+      interestsPlaceholder: 'Musées, randonnée, gastronomie, technologie...',
+      messageLabel: 'Message supplémentaire',
+      messagePlaceholder: 'Dites-nous en plus sur vous ou sur votre visite...',
+      submitLabel: 'Envoyer ma demande',
+      disclaimer: 'Vos informations seront partagées uniquement avec le coordinateur SIGHT et les hôtes potentiels.',
+      formKicker: 'Formulaire de voyage',
+      personalInfoTitle: 'Informations personnelles',
+      travelDetailsTitle: 'Détails du voyage',
+      aboutYouTitle: 'À propos de vous',
+    }
+  : locale === 'es'
+    ? {
+        title: 'Planificar su viaje',
+        description: 'Envíe su plan de viaje para conectarse con anfitriones SIGHT en Canadá.',
+        heroTitle: 'Planificar su viaje',
+        heroSubtitle: 'Complete este formulario y lo conectaremos con un anfitrión local.',
+        languageNote: 'Por favor, comuníquese en inglés o francés.',
+        benefitsTitle: '¿Por qué planificar con SIGHT?',
+        benefits: [
+          { icon: 'shield', title: 'Red de confianza', description: 'Todos los anfitriones son miembros verificados de Mensa. Está en buenas manos.' },
+          { icon: 'clock', title: 'Respuesta rápida', description: 'Los coordinadores generalmente lo contactan en 48 horas con sugerencias de anfitriones locales.' },
+          { icon: 'users', title: 'Experiencia personalizada', description: 'Sus intereses y preferencias son considerados para un emparejamiento óptimo.' },
+        ],
+        nameLabel: 'Nombre completo',
+        namePlaceholder: 'Juan García',
+        emailLabel: 'Correo electrónico',
+        emailPlaceholder: 'juan@example.com',
+        memberLabel: 'Número de miembro Mensa',
+        memberPlaceholder: '123456',
+        countryLabel: 'País de origen',
+        countryPlaceholder: 'España',
+        arrivalLabel: 'Fecha de llegada',
+        departureLabel: 'Fecha de salida',
+        citiesLabel: 'Ciudades que planea visitar',
+        citiesPlaceholder: 'Toronto, Montreal, Vancouver',
+        transportLabel: 'Medio de transporte',
+        transportOptions: ['Coche', 'Tren', 'Avión', 'Autobús', 'Otro'],
+        accommodationLabel: '¿Necesita alojamiento?',
+        accommodationOptions: ['No, solo un guía local', 'Sí, si es posible', 'Opcional'],
+        interestsLabel: 'Intereses',
+        interestsPlaceholder: 'Museos, senderismo, gastronomía, tecnología...',
+        messageLabel: 'Mensaje adicional',
+        messagePlaceholder: 'Cuéntenos más sobre usted o su visita...',
+        submitLabel: 'Enviar mi solicitud',
+        disclaimer: 'Su información será compartida únicamente con el coordinador SIGHT y los posibles anfitriones.',
+        formKicker: 'Formulario de viaje',
+        personalInfoTitle: 'Información personal',
+        travelDetailsTitle: 'Detalles del viaje',
+        aboutYouTitle: 'Sobre usted',
+      }
+    : {
+        title: 'Plan Your Trip',
+        description: 'Submit your travel plan to connect with SIGHT hosts in Canada.',
+        heroTitle: 'Plan Your Trip',
+        heroSubtitle: 'Fill out this form and we\'ll connect you with a local host.',
+        languageNote: 'Please communicate in English or French.',
+        benefitsTitle: 'Why Plan with SIGHT?',
+        benefits: [
+          { icon: 'shield', title: 'Trusted Network', description: 'All hosts are verified Mensa members. You\'re in good hands.' },
+          { icon: 'clock', title: 'Quick Response', description: 'Coordinators typically reach out within 48 hours with local host suggestions.' },
+          { icon: 'users', title: 'Personalised Experience', description: 'Your interests and preferences are matched for an optimal pairing.' },
+        ],
+        nameLabel: 'Full Name',
+        namePlaceholder: 'John Smith',
+        emailLabel: 'Email Address',
+        emailPlaceholder: 'john@example.com',
+        memberLabel: 'Mensa Membership Number',
+        memberPlaceholder: '123456',
+        countryLabel: 'Country of Origin',
+        countryPlaceholder: 'United Kingdom',
+        arrivalLabel: 'Arrival Date',
+        departureLabel: 'Departure Date',
+        citiesLabel: 'Cities You Plan to Visit',
+        citiesPlaceholder: 'Toronto, Montreal, Vancouver',
+        transportLabel: 'Mode of Transport',
+        transportOptions: ['Car', 'Train', 'Plane', 'Bus', 'Other'],
+        accommodationLabel: 'Do you need accommodation?',
+        accommodationOptions: ['No, just a local guide', 'Yes, if possible', 'Optional'],
+        interestsLabel: 'Interests',
+        interestsPlaceholder: 'Museums, hiking, food, technology...',
+        messageLabel: 'Additional Message',
+        messagePlaceholder: 'Tell us more about yourself or your visit...',
+        submitLabel: 'Submit My Request',
+        disclaimer: 'Your information will be shared only with the SIGHT coordinator and potential hosts.',
+        formKicker: 'Travel Form',
+        personalInfoTitle: 'Personal Information',
+        travelDetailsTitle: 'Travel Details',
+        aboutYouTitle: 'About You',
+      };
+
+const benefitIcons = { shield: Shield, clock: Clock, users: Users };
+---
+
+<Layout title={copy.title} description={copy.description} locale={locale} routeKey="plan">
+  <!-- Hero with background image -->
+  <section
+    class="image-hero"
+    style="background: url('/images/hero-plan.jpg') center/cover no-repeat, url('/images/hero-plan.svg') center/cover no-repeat, linear-gradient(135deg, #0D2237, #17324D 60%, #7C2A39);"
+  >
+    <div class="page-container text-center">
+      <h1 class="page-hero-title">{copy.heroTitle}</h1>
+      <p class="page-hero-subtitle">{copy.heroSubtitle}</p>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="py-section bg-surface-cool/50">
+    <div class="page-container">
+      <div class="mb-14 text-center">
+        <h2 class="section-title">{copy.benefitsTitle}</h2>
+      </div>
+
+      <div class="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
+        {copy.benefits.map((b) => {
+          const IconComponent = benefitIcons[b.icon as keyof typeof benefitIcons];
+          return (
+            <div class="benefit-card">
+              <div class="benefit-icon">
+                <IconComponent class="w-7 h-7" />
+              </div>
+              <h3 class="mb-2 font-heading text-lg font-bold uppercase tracking-[-0.02em] text-secondary">{b.title}</h3>
+              <p class="text-sm leading-relaxed text-text-secondary">{b.description}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Form -->
+  <section class="py-section">
+    <div class="page-container">
+      <div class="mx-auto max-w-2xl">
+        <div class="mb-10 text-center">
+          <span class="section-kicker">{copy.formKicker}</span>
+        </div>
+
+        <div class="form-note">
+          <MessageCircle class="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+          <p class="text-sm font-medium leading-relaxed text-text-primary">{copy.languageNote}</p>
+        </div>
+
+        <form class="space-y-8" action="https://formsubmit.co/sight@mensa.ca" method="POST">
+          <!-- Honeypot -->
+          <input type="text" name="_honey" class="hidden" />
+          <!-- Disable captcha page -->
+          <input type="hidden" name="_captcha" value="false" />
+
+          <!-- Personal Info -->
+          <fieldset class="surface-panel space-y-5 px-7 py-8">
+            <legend class="font-heading text-lg font-bold uppercase tracking-tight text-secondary">
+              {copy.personalInfoTitle}
+            </legend>
+
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <div>
+                <label for="name" class="mb-1.5 block text-sm font-medium text-text-primary">{copy.nameLabel}</label>
+                <input type="text" id="name" name="name" required placeholder={copy.namePlaceholder} class="form-control" />
+              </div>
+              <div>
+                <label for="email" class="mb-1.5 block text-sm font-medium text-text-primary">{copy.emailLabel}</label>
+                <input type="email" id="email" name="email" required placeholder={copy.emailPlaceholder} class="form-control" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <div>
+                <label for="member" class="mb-1.5 block text-sm font-medium text-text-primary">{copy.memberLabel}</label>
+                <input type="text" id="member" name="member_number" required placeholder={copy.memberPlaceholder} class="form-control" />
+              </div>
+              <div>
+                <label for="country" class="mb-1.5 block text-sm font-medium text-text-primary">{copy.countryLabel}</label>
+                <input type="text" id="country" name="country" required placeholder={copy.countryPlaceholder} class="form-control" />
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Travel Details -->
+          <fieldset class="surface-panel space-y-5 px-7 py-8">
+            <legend class="font-heading text-lg font-bold uppercase tracking-tight text-secondary">
+              {copy.travelDetailsTitle}
+            </legend>
+
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <div>
+                <label for="arrival" class="mb-1.5 block text-sm font-medium text-text-primary">{copy.arrivalLabel}</label>
+                <input type="date" id="arrival" name="arrival_date" required class="form-control" />
+              </div>
+              <div>
+                <label for="departure" class="mb-1.5 block text-sm font-medium text-text-primary">{copy.departureLabel}</label>
+                <input type="date" id="departure" name="departure_date" required class="form-control" />
+              </div>
+            </div>
+
+            <div>
+              <label for="cities" class="mb-1.5 block text-sm font-medium text-text-primary">{copy.citiesLabel}</label>
+              <input type="text" id="cities" name="cities" required placeholder={copy.citiesPlaceholder} class="form-control" />
+            </div>
+
+            <div>
+              <label for="transport" class="mb-1.5 block text-sm font-medium text-text-primary">{copy.transportLabel}</label>
+              <select id="transport" name="transport" required class="form-control">
+                <option value="" disabled selected>—</option>
+                {copy.transportOptions.map((opt) => (
+                  <option value={opt}>{opt}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <span class="mb-2 block text-sm font-medium text-text-primary">{copy.accommodationLabel}</span>
+              <div class="flex flex-wrap gap-3">
+                {copy.accommodationOptions.map((opt, i) => (
+                  <label class="choice-panel">
+                    <input type="radio" name="accommodation" value={opt} required class="accent-primary" checked={i === 0} />
+                    <span class="text-sm">{opt}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Interests & Message -->
+          <fieldset class="surface-panel space-y-5 px-7 py-8">
+            <legend class="font-heading text-lg font-bold uppercase tracking-tight text-secondary">
+              {copy.aboutYouTitle}
+            </legend>
+
+            <div>
+              <label for="interests" class="mb-1.5 block text-sm font-medium text-text-primary">{copy.interestsLabel}</label>
+              <input type="text" id="interests" name="interests" placeholder={copy.interestsPlaceholder} class="form-control" />
+            </div>
+
+            <div>
+              <label for="message" class="mb-1.5 block text-sm font-medium text-text-primary">{copy.messageLabel}</label>
+              <textarea id="message" name="message" rows="4" placeholder={copy.messagePlaceholder} class="form-textarea"></textarea>
+            </div>
+          </fieldset>
+
+          <!-- Submit -->
+          <div class="text-center">
+            <button type="submit" class="btn-primary">
+              {copy.submitLabel} <Send class="w-4 h-4" />
+            </button>
+            <p class="mt-4 text-xs text-text-muted">{copy.disclaimer}</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>

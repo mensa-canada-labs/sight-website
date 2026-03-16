@@ -1,0 +1,69 @@
+---
+import { Mail, MapPin, Heart, ExternalLink } from 'lucide-astro';
+import { brandLockup, footerCopy, getAssetPath, getLocalizedPath } from '../i18n/site';
+import type { Locale } from '../i18n/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = footerCopy[locale];
+const brand = brandLockup[locale];
+---
+
+<footer class="mt-20 bg-surface-dark text-text-inverse">
+  <div class="page-container py-16">
+    <div class="grid grid-cols-1 gap-12 border-b border-text-inverse/10 pb-12 lg:grid-cols-[1.4fr_0.8fr_1fr]">
+      <div>
+        <a href={getLocalizedPath(locale, 'home')} class="mb-6 flex items-center gap-4">
+          <span class="brand-logo-swap h-14 w-14 sm:h-16 sm:w-16" aria-hidden="true">
+            <img src={getAssetPath('mensa_logo_color.svg')} alt="" class="brand-logo-image brand-logo-image-light" loading="lazy" decoding="async" />
+            <img src={getAssetPath('mensa_logo_bg_color.svg')} alt="" class="brand-logo-image brand-logo-image-dark" loading="lazy" decoding="async" />
+          </span>
+          <div class="min-w-0">
+            <div class="font-heading text-[1.1rem] leading-none tracking-[-0.02em] text-text-inverse whitespace-nowrap sm:text-[1.3rem] lg:text-[1.55rem]">{brand.title}</div>
+            <div class="mt-2 text-[0.6rem] font-semibold uppercase tracking-[0.28em] text-accent whitespace-nowrap sm:text-[0.66rem]">{brand.tagline}</div>
+          </div>
+        </a>
+
+        <p class="max-w-md text-sm leading-relaxed text-text-inverse/62">{copy.about}</p>
+      </div>
+
+      <div>
+        <h3 class="mb-6 text-xs font-semibold uppercase tracking-[0.24em] text-accent">{copy.quickLinksTitle}</h3>
+        <ul class="space-y-3">
+          <li><a href={getLocalizedPath(locale, 'home')} class="text-sm text-text-inverse/62 transition-colors hover:text-text-inverse">{copy.quickLinks.home}</a></li>
+          <li><a href={getLocalizedPath(locale, 'program')} class="text-sm text-text-inverse/62 transition-colors hover:text-text-inverse">{copy.quickLinks.program}</a></li>
+          <li><a href={getLocalizedPath(locale, 'contacts')} class="text-sm text-text-inverse/62 transition-colors hover:text-text-inverse">{copy.quickLinks.contacts}</a></li>
+          <li><a href={getLocalizedPath(locale, 'plan')} class="text-sm text-text-inverse/62 transition-colors hover:text-text-inverse">{copy.quickLinks.plan}</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="mb-6 text-xs font-semibold uppercase tracking-[0.24em] text-accent">{copy.contactTitle}</h3>
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3">
+            <Mail class="w-4 h-4 text-accent mt-1 shrink-0" />
+            <a href="mailto:sight@mensa.ca" class="text-sm text-text-inverse/62 transition-colors hover:text-text-inverse">sight@mensa.ca</a>
+          </li>
+          <li class="flex items-start gap-3">
+            <MapPin class="w-4 h-4 text-accent mt-1 shrink-0" />
+            <span class="text-sm text-text-inverse/62">{copy.addressLines[0]}<br />{copy.addressLines[1]}</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <ExternalLink class="w-4 h-4 text-accent mt-1 shrink-0" />
+            <a href={copy.mensaUrl} target="_blank" rel="noopener" class="text-sm text-text-inverse/62 transition-colors hover:text-text-inverse">{copy.mensaLabel}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center justify-between gap-4 pt-8 md:flex-row">
+      <p class="text-sm text-text-inverse/42">&copy; {new Date().getFullYear()} {copy.copyright}</p>
+      <p class="flex items-center gap-1 text-sm text-text-inverse/42">
+        {copy.madeWith} <Heart class="w-3 h-3 text-accent" /> {copy.madeFor}
+      </p>
+    </div>
+  </div>
+</footer>

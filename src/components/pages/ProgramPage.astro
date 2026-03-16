@@ -1,0 +1,346 @@
+---
+import { CheckCircle, AlertTriangle, ArrowRight, Globe, BookOpen, Heart, Compass } from 'lucide-astro';
+import Layout from '../../layouts/Layout.astro';
+import { getLocalizedPath } from '../../i18n/site';
+import type { Locale } from '../../i18n/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const copy = locale === 'fr'
+  ? {
+      title: 'Le programme SIGHT',
+      description: 'Découvrez le programme SIGHT de Mensa – Service d\'Information, d\'Orientation et d\'Hospitalité aux Voyageurs.',
+      heroTitle: 'Le programme SIGHT',
+      heroSubtitle: 'Service d\'Information, d\'Orientation et d\'Hospitalité aux Voyageurs',
+      historyTitle: 'Notre histoire',
+      history: 'SIGHT a été fondé en 1967 par June Alexander Solntseff, membre de Mensa Australia. Depuis, le programme s\'est étendu à plus de 50 pays, connectant les membres de Mensa du monde entier. Chaque pays organise son programme de manière indépendante, les coordonnateurs locaux facilitant les mises en relation entre visiteurs et hôtes.',
+      stats: [
+        { value: '1967', label: 'Fondé' },
+        { value: '50+', label: 'Pays' },
+        { value: '16', label: 'Chapitres au Canada' },
+        { value: '57+', label: 'Années d\'hospitalité' },
+      ],
+      rolesTitle: 'Les rôles du programme',
+      roles: [
+        {
+          title: 'Le voyageur',
+          image: 'traveller',
+          items: [
+            'Soumet un plan de voyage à l\'avance',
+            'Communique ses intérêts et préférences',
+            'Respecte les règles et coutumes locales',
+            'Fournit une rétroaction après la visite',
+          ],
+        },
+        {
+          title: 'L\'hôte',
+          image: 'host',
+          items: [
+            'Offre son temps et ses connaissances locales',
+            'N\'est pas obligé d\'héberger chez lui',
+            'Peut proposer un repas, une visite, ou des conseils',
+            'Communique clairement ce qu\'il peut offrir',
+          ],
+        },
+        {
+          title: 'Le coordonnateur',
+          image: 'coordinator',
+          items: [
+            'Reçoit les demandes de voyage',
+            'Met en relation voyageurs et hôtes',
+            'Assure le suivi et la qualité du service',
+            'Maintient la liste d\'hôtes à jour',
+          ],
+        },
+      ],
+      guidelinesTitle: 'Lignes directrices',
+      guidelines: [
+        'Contactez le coordonnateur SIGHT au moins 2 semaines avant votre visite.',
+        'Indiquez vos dates de voyage, vos intérêts et vos préférences.',
+        'Attendez la confirmation d\'un hôte avant de compter sur le service.',
+        'Les hôtes ne sont pas obligés d\'héberger les voyageurs.',
+        'SIGHT est un service bénévole – aucun paiement n\'est attendu.',
+        'Envoyez un mot de remerciement après votre visite.',
+      ],
+      notTitle: 'Ce que SIGHT n\'est pas',
+      notItems: [
+        'Un service d\'hébergement gratuit ou un substitut d\'hôtel.',
+        'Un service de transport ou d\'escorte touristique.',
+        'Un service disponible sans préavis ou à la dernière minute.',
+        'Un programme qui met en contact des non-membres de Mensa.',
+      ],
+      ctaTitle: 'Prêt à partir?',
+      ctaText: 'Soumettez votre plan de voyage et connectez-vous avec les hôtes SIGHT.',
+      ctaButton: 'Planifier mon voyage',
+    }
+  : locale === 'es'
+    ? {
+        title: 'El programa SIGHT',
+        description: 'Conozca el programa SIGHT de Mensa – Servicio de Información, Orientación y Hospitalidad para Viajeros.',
+        heroTitle: 'El programa SIGHT',
+        heroSubtitle: 'Servicio de Información, Orientación y Hospitalidad para Viajeros',
+        historyTitle: 'Nuestra historia',
+        history: 'SIGHT fue fundado en 1967 por June Alexander Solntseff, miembro de Mensa Australia. Desde entonces, el programa se ha expandido a más de 50 países, conectando miembros de Mensa en todo el mundo. Cada país organiza su programa de manera independiente, con coordinadores locales facilitando conexiones entre visitantes y anfitriones.',
+        stats: [
+          { value: '1967', label: 'Fundado' },
+          { value: '50+', label: 'Países' },
+          { value: '16', label: 'Capítulos en Canadá' },
+          { value: '57+', label: 'Años de hospitalidad' },
+        ],
+        rolesTitle: 'Roles del programa',
+        roles: [
+          {
+            title: 'El viajero',
+            image: 'traveller',
+            items: [
+              'Envía un plan de viaje con anticipación',
+              'Comunica sus intereses y preferencias',
+              'Respeta las reglas y costumbres locales',
+              'Proporciona retroalimentación después de la visita',
+            ],
+          },
+          {
+            title: 'El anfitrión',
+            image: 'host',
+            items: [
+              'Ofrece su tiempo y conocimientos locales',
+              'No está obligado a alojar en su hogar',
+              'Puede ofrecer una comida, un recorrido o consejos',
+              'Comunica claramente lo que puede ofrecer',
+            ],
+          },
+          {
+            title: 'El coordinador',
+            image: 'coordinator',
+            items: [
+              'Recibe las solicitudes de viaje',
+              'Conecta viajeros con anfitriones',
+              'Asegura el seguimiento y la calidad del servicio',
+              'Mantiene la lista de anfitriones actualizada',
+            ],
+          },
+        ],
+        guidelinesTitle: 'Directrices',
+        guidelines: [
+          'Contacte al coordinador SIGHT al menos 2 semanas antes de su visita.',
+          'Indique sus fechas de viaje, intereses y preferencias.',
+          'Espere la confirmación de un anfitrión antes de contar con el servicio.',
+          'Los anfitriones no están obligados a alojar a los viajeros.',
+          'SIGHT es un servicio voluntario – no se espera ningún pago.',
+          'Envíe una nota de agradecimiento después de su visita.',
+        ],
+        notTitle: 'Lo que SIGHT no es',
+        notItems: [
+          'Un servicio de alojamiento gratuito o un sustituto de hotel.',
+          'Un servicio de transporte o escolta turística.',
+          'Un servicio disponible sin previo aviso o de última hora.',
+          'Un programa que conecta a no miembros de Mensa.',
+        ],
+        ctaTitle: '¿Listo para viajar?',
+        ctaText: 'Envíe su plan de viaje y conéctese con los anfitriones SIGHT.',
+        ctaButton: 'Planificar mi viaje',
+      }
+    : {
+        title: 'The SIGHT Program',
+        description: 'Learn about Mensa\'s SIGHT Program – Service of Information, Guidance and Hospitality to Travellers.',
+        heroTitle: 'The SIGHT Program',
+        heroSubtitle: 'Service of Information, Guidance and Hospitality to Travellers',
+        historyTitle: 'Our History',
+        history: 'SIGHT was founded in 1967 by June Alexander Solntseff, a Mensa Australia member. Since then, the program has expanded to over 50 countries, connecting Mensa members worldwide. Each country runs its program independently, with local coordinators facilitating connections between visitors and hosts.',
+        stats: [
+          { value: '1967', label: 'Founded' },
+          { value: '50+', label: 'Countries' },
+          { value: '16', label: 'Chapters in Canada' },
+          { value: '57+', label: 'Years of Hospitality' },
+        ],
+        rolesTitle: 'Program Roles',
+        roles: [
+          {
+            title: 'The Traveller',
+            image: 'traveller',
+            items: [
+              'Submits a travel plan in advance',
+              'Communicates interests and preferences',
+              'Respects local rules and customs',
+              'Provides feedback after the visit',
+            ],
+          },
+          {
+            title: 'The Host',
+            image: 'host',
+            items: [
+              'Offers time and local knowledge',
+              'Is not required to provide lodging',
+              'May offer a meal, a tour, or advice',
+              'Clearly communicates what they can offer',
+            ],
+          },
+          {
+            title: 'The Coordinator',
+            image: 'coordinator',
+            items: [
+              'Receives travel requests',
+              'Connects travellers with hosts',
+              'Ensures follow-up and service quality',
+              'Keeps the host list up to date',
+            ],
+          },
+        ],
+        guidelinesTitle: 'Guidelines',
+        guidelines: [
+          'Contact the SIGHT coordinator at least 2 weeks before your visit.',
+          'Indicate your travel dates, interests, and preferences.',
+          'Wait for host confirmation before relying on the service.',
+          'Hosts are not obligated to provide lodging.',
+          'SIGHT is a volunteer service – no payment is expected.',
+          'Send a thank-you note after your visit.',
+        ],
+        notTitle: 'What SIGHT Is Not',
+        notItems: [
+          'A free accommodation service or hotel substitute.',
+          'A transport or tour escort service.',
+          'A service available without notice or at the last minute.',
+          'A program that connects non-members of Mensa.',
+        ],
+        ctaTitle: 'Ready to Travel?',
+        ctaText: 'Submit your travel plan and connect with SIGHT hosts.',
+        ctaButton: 'Plan My Trip',
+      };
+
+const roleIcons = [Compass, Heart, Globe];
+---
+
+<Layout title={copy.title} description={copy.description} locale={locale} routeKey="program">
+  <!-- Hero with background image -->
+  <section
+    class="image-hero"
+    style="background: url('/images/hero-program.jpg') center/cover no-repeat, url('/images/hero-program.svg') center/cover no-repeat, linear-gradient(135deg, #102235, #1A3A5C 50%, #7C2A39);"
+  >
+    <div class="page-container text-center">
+      <h1 class="page-hero-title">{copy.heroTitle}</h1>
+      <p class="page-hero-subtitle">{copy.heroSubtitle}</p>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="border-b border-border bg-surface-cool/60 py-10">
+    <div class="page-container">
+      <div class="mx-auto grid max-w-3xl grid-cols-2 gap-6 md:grid-cols-4">
+        {copy.stats.map((s) => (
+          <div class="text-center">
+            <div class="stat-value">{s.value}</div>
+            <div class="stat-label">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- History -->
+  <section class="py-section">
+    <div class="page-container">
+      <div class="mx-auto max-w-3xl">
+        <div class="flex items-start gap-5">
+          <div class="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10">
+            <BookOpen class="w-6 h-6 text-primary" />
+          </div>
+          <div>
+            <h2 class="section-title text-left">{copy.historyTitle}</h2>
+            <p class="text-base leading-relaxed text-text-secondary">{copy.history}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roles -->
+  <section class="py-section bg-surface-cool/50">
+    <div class="page-container">
+      <div class="mb-14 text-center">
+        <h2 class="section-title">{copy.rolesTitle}</h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        {copy.roles.map((role, idx) => {
+          const RoleIcon = roleIcons[idx];
+          return (
+            <div class="program-role-card surface-panel relative overflow-hidden">
+              <div class="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-primary to-primary-light"></div>
+              <div
+                class="program-role-media"
+                style={`background: url('/images/roles/${role.image}.jpg') center/cover no-repeat, url('/images/roles/${role.image}.svg') center/cover no-repeat, linear-gradient(135deg, rgba(15, 28, 43, 0.94), rgba(27, 58, 92, 0.84));`}
+              ></div>
+              <div class="px-7 py-8">
+                <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+                  <RoleIcon class="w-6 h-6 text-primary" />
+                </div>
+                <h3 class="mb-4 font-heading text-lg font-bold uppercase tracking-[-0.02em] text-secondary">{role.title}</h3>
+                <ul class="space-y-2.5">
+                  {role.items.map((item) => (
+                    <li class="flex items-start gap-2.5 text-sm leading-relaxed text-text-secondary">
+                      <CheckCircle class="mt-0.5 w-4 h-4 shrink-0 text-primary" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Guidelines -->
+  <section class="py-section">
+    <div class="page-container">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="section-title text-center">{copy.guidelinesTitle}</h2>
+
+        <div class="mt-10 space-y-4">
+          {copy.guidelines.map((g, i) => (
+            <div class="flex items-start gap-4 rounded-xl border border-border bg-surface-elevated/50 px-6 py-4">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 font-heading text-sm font-bold text-primary">
+                {i + 1}
+              </span>
+              <p class="pt-1 text-sm leading-relaxed text-text-secondary">{g}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What SIGHT Is Not -->
+  <section class="py-section bg-surface-cool/50">
+    <div class="page-container">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="section-title text-center">{copy.notTitle}</h2>
+
+        <div class="mt-10 space-y-3">
+          {copy.notItems.map((item) => (
+            <div class="flex items-start gap-3 rounded-xl border border-accent/20 bg-accent/5 px-6 py-4">
+              <AlertTriangle class="mt-0.5 w-5 h-5 shrink-0 text-accent" />
+              <p class="text-sm leading-relaxed text-text-secondary">{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-section">
+    <div class="page-container text-center">
+      <h2 class="section-title">{copy.ctaTitle}</h2>
+      <p class="mx-auto mt-4 max-w-lg text-base text-text-secondary">{copy.ctaText}</p>
+      <a href={getLocalizedPath(locale, 'plan')} class="btn-accent mt-8 inline-flex items-center gap-2">
+        {copy.ctaButton} <ArrowRight class="w-4 h-4" />
+      </a>
+    </div>
+  </section>
+</Layout>

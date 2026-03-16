@@ -1,0 +1,181 @@
+---
+import { chapters } from '../data/chapters';
+import type { Locale } from '../i18n/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const chaptersJson = JSON.stringify(
+  chapters.map((c) => ({
+    name: c.name,
+    city: c.city,
+    region: c.region[locale],
+    lat: c.lat,
+    lng: c.lng,
+    email: c.email,
+    website: c.website || null,
+  }))
+);
+---
+
+<div class="map-container" id="chapter-map" data-chapters={chaptersJson}></div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+
+<script is:inline>
+(function () {
+  if (window.__chapterMapInit) return;
+  window.__chapterMapInit = true;
+
+  function loadScript(src, cb) {
+    var s = document.createElement('script');
+    s.src = src;
+    s.crossOrigin = '';
+    s.onload = cb;
+    document.head.appendChild(s);
+  }
+
+  function initMap() {
+    var el = document.getElementById('chapter-map');
+    if (!el || !window.L) return;
+    var chapters = JSON.parse(el.getAttribute('data-chapters') || '[]');
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+    var lightUrl = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+    var darkUrl = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+    var attr = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>';
+
+    var map = L.map(el, { scrollWheelZoom: false }).setView([56, -96], 4);
+    var tileLayer = L.tileLayer(isDark ? darkUrl : lightUrl, { attribution: attr, maxZoom: 18 }).addTo(map);
+
+    var markerIcon = L.divIcon({
+      className: 'chapter-marker',
+      html: '<span class="chapter-marker-pin"></span>',
+      iconSize: [18, 18],
+      iconAnchor: [9, 9],
+      popupAnchor: [0, -12],
+    });
+
+    chapters.forEach(function (ch) {
+      L.marker([ch.lat, ch.lng], { icon: markerIcon })
+        .addTo(map)
+        .bindPopup(
+          '<div class="chapter-popup">' +
+            '<strong>' + ch.name + '</strong><br/>' +
+            '<span class="chapter-popup-region">' + ch.city + ' · ' + ch.region + '</span><br/>' +
+            '<a href="mailto:' + ch.email + '">' + ch.email + '</a>' +
+            (ch.website ? '<br/><a href="' + ch.website + '" target="_blank" rel="noopener noreferrer" class="chapter-popup-web">↗ Website</a>' : '') +
+          '</div>'
+        );
+    });
+
+    // Theme switching
+    var observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (m) {
+        if (m.attributeName === 'data-theme') {
+          var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+          tileLayer.setUrl(dark ? darkUrl : lightUrl);
+        }
+      });
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  }
+
+  if (window.L) {
+    initMap();
+  } else {
+    loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', initMap);
+  }
+})();
+</script>
+
+<style is:global>
+  .chapter-marker {
+    background: none !important;
+    border: none !important;
+  }
+
+  .chapter-marker-pin {
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--theme-primary, #C22A37);
+    border: 2.5px solid #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s ease;
+  }
+
+  .chapter-marker:hover .chapter-marker-pin {
+    transform: scale(1.35);
+  }
+
+  :root[data-theme='dark'] .chapter-marker-pin {
+    background: var(--theme-primary, #F06B76);
+    border-color: #162434;
+  }
+
+  .map-container {
+    position: relative;
+    z-index: 0;
+    isolation: isolate;
+  }
+
+  .map-container .leaflet-top,
+  .map-container .leaflet-bottom {
+    z-index: 10;
+  }
+
+  .chapter-popup {
+    font-family: var(--font-body, 'Archivo', sans-serif);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .chapter-popup strong {
+    font-family: var(--font-heading, 'League Spartan', sans-serif);
+    font-size: 0.9rem;
+    letter-spacing: -0.02em;
+  }
+
+  .chapter-popup-region {
+    color: #778391;
+    font-size: 0.76rem;
+  }
+
+  .chapter-popup a {
+    color: var(--theme-primary, #C22A37);
+    font-weight: 600;
+    font-size: 0.78rem;
+  }
+
+  :root[data-theme='dark'] .chapter-popup a {
+    color: var(--theme-primary, #F06B76);
+  }
+
+  :root[data-theme='dark'] .leaflet-popup-content-wrapper,
+  :root[data-theme='dark'] .leaflet-popup-tip {
+    background: #162434;
+    color: #EFF5FB;
+  }
+
+  :root[data-theme='dark'] .leaflet-popup-content-wrapper {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  :root[data-theme='dark'] .chapter-popup-region {
+    color: #8E9FB1;
+  }
+
+  :root[data-theme='dark'] .leaflet-control-attribution {
+    background: rgba(22, 36, 52, 0.85) !important;
+    color: #8E9FB1 !important;
+  }
+
+  :root[data-theme='dark'] .leaflet-control-attribution a {
+    color: var(--theme-primary, #F06B76) !important;
+  }
+</style>

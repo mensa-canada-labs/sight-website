@@ -1,0 +1,32 @@
+﻿# Stock Image Credits
+
+| Local file | Provider | Source page | Downloaded image |
+|---|---|---|---|
+| hero-home.jpg | Pexels | https://www.pexels.com/photo/beautiful-view-of-moraine-lake-2662116/ | https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg?auto=compress&cs=tinysrgb&w=1920&fit=crop |
+| hero-program.jpg | Pexels | https://www.pexels.com/photo/person-pointing-a-location-on-the-map-1051075/ | https://images.pexels.com/photos/1051075/pexels-photo-1051075.jpeg?auto=compress&cs=tinysrgb&w=1920&fit=crop |
+| hero-contacts.jpg | Pexels | https://www.pexels.com/photo/scenery-of-city-buildings-in-ontario-12042757/ | https://images.pexels.com/photos/12042757/pexels-photo-12042757.jpeg?auto=compress&cs=tinysrgb&w=1920&fit=crop |
+| hero-plan.jpg | Pexels | https://www.pexels.com/photo/gray-concrete-road-between-green-trees-and-mountain-10762305/ | https://images.pexels.com/photos/10762305/pexels-photo-10762305.jpeg?auto=compress&cs=tinysrgb&w=1920&fit=crop |
+| destinations/vancouver.jpg | Pexels | https://www.pexels.com/photo/vancouver-skyline-with-mountains-and-marina-29072584/ | https://images.pexels.com/photos/29072584/pexels-photo-29072584.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| destinations/victoria.jpg | Pexels | https://www.pexels.com/photo/fairmont-express-in-victoria-canada-14778867/ | https://images.pexels.com/photos/14778867/pexels-photo-14778867.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| destinations/kelowna.jpg | Pexels | https://www.pexels.com/photo/bridge-and-boating-in-kelowna-bc-canada-32853804/ | https://images.pexels.com/photos/32853804/pexels-photo-32853804.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| destinations/calgary.jpg | Pexels | https://www.pexels.com/photo/calgary-skyline-with-iconic-calgary-tower-31228635/ | https://images.pexels.com/photos/31228635/pexels-photo-31228635.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| destinations/edmonton.jpg | Pexels | https://www.pexels.com/photo/cityscape-with-the-illuminated-walterdale-bridge-at-night-in-edmonton-canada-13356826/ | https://images.pexels.com/photos/13356826/pexels-photo-13356826.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| destinations/saskatoon.jpg | Pexels | https://www.pexels.com/photo/saskatoon-skyline-overlooking-riverbank-park-32097415/ | https://images.pexels.com/photos/32097415/pexels-photo-32097415.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| destinations/winnipeg.jpg | Pexels | https://www.pexels.com/photo/downtown-winnipeg-skyline-view-with-diverse-architecture-31721757/ | https://images.pexels.com/photos/31721757/pexels-photo-31721757.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| destinations/toronto.jpg | Pexels | https://www.pexels.com/photo/scenery-of-city-buildings-in-ontario-12042757/ | https://images.pexels.com/photos/12042757/pexels-photo-12042757.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| destinations/ottawa.jpg | Pexels | https://www.pexels.com/photo/photo-of-beige-and-green-castle-1045915/ | https://images.pexels.com/photos/1045915/pexels-photo-1045915.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| destinations/kitchener.jpg | Pexels | https://www.pexels.com/photo/city-suburbs-5781561/ | https://images.pexels.com/photos/5781561/pexels-photo-5781561.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| destinations/london.jpg | Pexels | https://www.pexels.com/photo/the-renaissance-buildings-at-london-ontario-canada-5085616/ | https://images.pexels.com/photos/5085616/pexels-photo-5085616.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| destinations/windsor.jpg | Pexels | https://www.pexels.com/photo/the-steel-tower-of-the-ambassador-international-bridge-connecting-united-states-and-canada-10492318/ | https://images.pexels.com/photos/10492318/pexels-photo-10492318.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| destinations/sudbury.jpg | Pexels | https://www.pexels.com/photo/historic-church-in-snowy-greater-sudbury-31136665/ | https://images.pexels.com/photos/31136665/pexels-photo-31136665.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| destinations/montreal.jpg | Pexels | https://www.pexels.com/photo/montreal-skyline-at-sunset-with-skyscrapers-33825323/ | https://images.pexels.com/photos/33825323/pexels-photo-33825323.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| destinations/quebec.jpg | Pexels | https://www.pexels.com/photo/hotel-in-a-castle-in-quebec-13554478/ | https://images.pexels.com/photos/13554478/pexels-photo-13554478.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| destinations/halifax.jpg | Pexels | https://www.pexels.com/photo/city-skyline-near-the-beach-7575473/ | https://images.pexels.com/photos/7575473/pexels-photo-7575473.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| regions/bc-yukon.jpg | Pexels | https://www.pexels.com/photo/scenic-view-of-snow-capped-mountains-2084337/ | https://images.pexels.com/photos/2084337/pexels-photo-2084337.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| regions/prairies.jpg | Pexels | https://www.pexels.com/photo/expansive-canola-fields-under-blue-sky-36088806/ | https://images.pexels.com/photos/36088806/pexels-photo-36088806.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| regions/ontario.jpg | Pexels | https://www.pexels.com/photo/high-rise-buildings-photo-800694/ | https://images.pexels.com/photos/800694/pexels-photo-800694.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| regions/quebec.jpg | Pexels | https://www.pexels.com/photo/charming-streets-of-old-quebec-city-34568753/ | https://images.pexels.com/photos/34568753/pexels-photo-34568753.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| regions/atlantic.jpg | Pexels | https://www.pexels.com/photo/lighthouse-on-rocky-seashore-14667564/ | https://images.pexels.com/photos/14667564/pexels-photo-14667564.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| roles/traveller.jpg | Pexels | https://www.pexels.com/photo/man-holding-green-and-brown-map-1143514/ | https://images.pexels.com/photos/1143514/pexels-photo-1143514.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| roles/host.jpg | Pexels | https://www.pexels.com/photo/coffee-on-table-at-home-10684688/ | https://images.pexels.com/photos/10684688/pexels-photo-10684688.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |
+| roles/coordinator.jpg | Pexels | https://www.pexels.com/photo/brown-framed-eyeglasses-on-white-printer-paper-beside-white-ceramic-mug-1684149/ | https://images.pexels.com/photos/1684149/pexels-photo-1684149.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop |

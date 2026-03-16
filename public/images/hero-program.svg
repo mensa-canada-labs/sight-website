@@ -1,0 +1,29 @@
+﻿<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900' role='img' aria-hidden='true'>
+  <defs>
+    <linearGradient id='sky' x1='0' y1='0' x2='1' y2='1'>
+      <stop offset='0%' stop-color='#121f33' />
+      <stop offset='100%' stop-color='#385a86' />
+    </linearGradient>
+    <linearGradient id='ground' x1='0' y1='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#1a2c46' />
+      <stop offset='100%' stop-color='#233754' />
+    </linearGradient>
+  </defs>
+  <rect width='1600' height='900' fill='url(#sky)' />
+  <circle cx='1238' cy='178' r='112' fill='#a7c8df' fill-opacity='0.92' />
+  <circle cx='1300' cy='146' r='38' fill='rgba(255,255,255,0.2)' />
+  <path d='M0 524C168 485 303 494 444 530C594 568 719 584 865 565C1014 546 1137 497 1275 489C1408 482 1522 511 1600 543V900H0Z' fill='url(#ground)' />
+  <path d='M0 0H1600V900H0Z' fill='rgba(255,255,255,0.02)' />
+  <path d='M0 118C219 91 411 117 591 180C736 231 877 247 1028 223C1175 199 1327 133 1600 142' stroke='rgba(255,255,255,0.08)' stroke-width='12' stroke-linecap='round' fill='none' />
+  <circle cx='348' cy='520' r='28' fill='#edf5fa' fill-opacity='0.84' />
+  <circle cx='574' cy='314' r='24' fill='#edf5fa' fill-opacity='0.82' />
+  <circle cx='826' cy='472' r='26' fill='#f06b76' fill-opacity='0.9' />
+  <circle cx='1077' cy='286' r='24' fill='#edf5fa' fill-opacity='0.82' />
+  <circle cx='1304' cy='516' r='30' fill='#edf5fa' fill-opacity='0.84' />
+  <path d='M348 520L574 314L826 472L1077 286L1304 516' stroke='rgba(255,255,255,0.28)' stroke-width='14' stroke-linecap='round' fill='none' />
+  <path d='M574 314L826 472L348 520' stroke='rgba(255,255,255,0.16)' stroke-width='8' stroke-linecap='round' fill='none' />
+  <path d='M826 472L1304 516' stroke='rgba(255,255,255,0.16)' stroke-width='8' stroke-linecap='round' fill='none' />
+  <circle cx='1212' cy='214' r='64' stroke='rgba(255,255,255,0.16)' stroke-width='16' fill='none' />
+  <path d='M1150 214H1274M1212 152V276' stroke='rgba(255,255,255,0.22)' stroke-width='12' stroke-linecap='round' />
+  <rect width='1600' height='900' fill='rgba(10, 18, 30, 0.04)' />
+</svg>
