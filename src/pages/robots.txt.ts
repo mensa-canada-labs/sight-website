@@ -1,12 +1,21 @@
 import type { APIRoute } from 'astro';
 
-export const GET: APIRoute = () =>
-  new Response(
-    [
+const shouldIndexSite = import.meta.env.PUBLIC_SITE_INDEXABLE === 'true';
+
+export const GET: APIRoute = () => {
+  const lines = shouldIndexSite
+    ? [
       'User-agent: *',
       'Allow: /',
       '',
       'Sitemap: https://sight.mensa.ca/sitemap-index.xml',
-    ].join('\n'),
-    { headers: { 'Content-Type': 'text/plain; charset=utf-8' } },
-  );
+    ]
+    : [
+      'User-agent: *',
+      'Disallow: /',
+    ];
+
+  return new Response(lines.join('\n'), {
+    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+  });
+};
